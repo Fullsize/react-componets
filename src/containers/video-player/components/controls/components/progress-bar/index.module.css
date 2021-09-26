@@ -1,0 +1,53 @@
+.slider {
+  height: 6px;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  background-color: #999;
+  position: relative;
+  margin-bottom: 6px;
+}
+
+.slider_loading,
+.slider_current {
+  width: 0;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.slider_current {
+  background-color: #e6e6e6;
+  transition: background-color 0.3s;
+  position: relative;
+}
+
+.slider_current::after {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: -8px;
+  top: -5px;
+  position: absolute;
+  content: "";
+  background-color: white;
+  border-radius: 50%;
+}
+
+.slider_loading {
+  background-color: #3333;
+  transition: background-color 0.3s;
+  overflow: hidden;
+}
+
+.slider_marker {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  left: 0;
+  top: -50%;
+  border-radius: 50%;
+  background-color: white;
+  transform: translate(-98%, 0);
+}

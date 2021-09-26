@@ -1,0 +1,26 @@
+.container {
+  width: 100vw;
+  background-color: black;
+  position: relative;
+}
+
+.video-container {
+  width: 100%;
+}
+
+/*操作区 */
+.operation {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 功能区 */
+.functional {
+  width: 100%;
+  flex: 1;
+}

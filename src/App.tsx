@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+/*
+ * @Author: Fullsize
+ * @Date: 2021-09-15 17:19:25
+ * @LastEditors: Fullsize
+ * @LastEditTime: 2021-09-26 14:46:00
+ * @FilePath: /react-context/src/App.tsx
+ */
+import React, { lazy, Suspense } from 'react';
+import { Switch, Route } from 'react-router-dom';
+
+import routers from '../src/routes'
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          {routers().map((item: { path: string; page: string; }) => (
+            <Route key={item.path} exact path={item.path} component={lazy(() => import(`./views/${item.page}`))}>
+            </Route>
+          ))}
+        </Switch>
+      </Suspense>
     </div>
   );
 }
