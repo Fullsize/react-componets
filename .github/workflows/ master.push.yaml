@@ -16,25 +16,17 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "14"
-      - uses: actions/checkout@v1
-      - name: Setup SSH Keys and known_hosts
-        env:
-            SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-        run: |
-            ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-            ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
-      - name: Some task that fetches dependencies
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-        run: ./fetch-deps.sh  
+      - name: webfactory/ssh-agent
+        uses: webfactory/ssh-agent@v0.5.3
+
       - name: Build
         run: |
           npm install yarn 
           yarn install
           yarn build
-      - name: git push 
-        run: |
-          git config --global user.email "1619686166@qq.com"&&git config --global user.name "Fullsize"
-          git add build/* -f
-          git commit -m 'update build'
-          git push origin build
+      # - name: git push 
+      #   run: |
+      #     git config --global user.email "1619686166@qq.com"&&git config --global user.name "Fullsize"
+      #     git add build/* -f
+      #     git commit -m 'update build'
+      #     git push origin build
