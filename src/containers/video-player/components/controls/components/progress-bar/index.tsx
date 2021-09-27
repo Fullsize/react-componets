@@ -2,12 +2,11 @@
  * @Author: Fullsize
  * @Date: 2021-09-17 10:15:29
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-24 17:32:18
+ * @LastEditTime: 2021-09-27 17:24:24
  * @FilePath: /react-context/src/containers/video-player/components/controls/components/progress-bar/index.tsx
  */
 import React, { useCallback, useContext, useMemo, useState, useRef, useEffect } from "react";
 import PlayerContext from "../../../../context/context-manager";
-import _ from 'lodash';
 import styles from './index.module.css';
 const getBufferedEnd = (currentTime: number, buffered: any) => {
 	if (!buffered) {
@@ -52,7 +51,7 @@ const getValue = (e: any, rect: any, duration: number) => {
 
 const ProgressBar: React.FC = () => {
 	const player = useContext(PlayerContext);
-	const { states: { currentTime, duration, buffered }, controls: { changeCurrentTime, pause, play } } = player;
+	const { states: { currentTime, duration, buffered }, controls: { changeCurrentTime, pause } } = player;
 	const [value, setValue] = useState(currentTime);
 	const slidRef = useRef<HTMLDivElement>(null)
 	const slidTrackRef = useRef<HTMLDivElement>(null)
