@@ -24,9 +24,9 @@ jobs:
           npm install yarn 
           yarn install
           yarn build
-      # - name: git push 
-      #   run: |
-      #     git config --global user.email "1619686166@qq.com"&&git config --global user.name "Fullsize"
-      #     git add build/* -f
-      #     git commit -m 'update build'
-      #     git push origin build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+
