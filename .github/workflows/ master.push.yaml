@@ -24,6 +24,6 @@ jobs:
       - name: git push 
         run: |
           git config --global user.email "1619686166@qq.com"&&git config --global user.name "Fullsize"
-          git add build/*
+          git add build/* -f
           git commit -m 'update build'
           git push origin build
