@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /*
  * @Author: Fullsize
  * @Date: 2021-09-16 11:08:28
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-24 17:43:48
+ * @LastEditTime: 2021-09-27 17:28:56
  * @FilePath: /react-context/src/containers/video-player/context/user-context.ts
  */
 import { useCallback, useReducer, useRef } from "react";
