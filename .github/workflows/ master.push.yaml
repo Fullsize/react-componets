@@ -7,6 +7,7 @@ on:
 
 jobs:
   build:
+    runs-on: self-hosted
     steps:
       - name: Checkout Main Repo
         uses: actions/checkout@v2.3.4
@@ -15,12 +16,15 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "14"
-      - name: install yarn
-        run: npm install yarn
-        run: yarn install
-        run: yarn build
-      - name: config git
-        run: git config --global user.email "1619686166@qq.com"&&git config --global user.name "Fullsize"
-        run: git add build/*
-        run: git commit -m "update build"
-        run: git push origin build
+      - name: Build
+        run: |
+          npm install yarn 
+          yarn install
+          yarn build
+      - name: git push 
+        run: |
+          git config --global user.email "1619686166@qq.com"&&git config --global user.name "Fullsize"
+          git add build/*
+          git commit -m 'update build'
+          git push origin build
+          
