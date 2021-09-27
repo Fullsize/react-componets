@@ -1,0 +1,32 @@
+name: Node.js CD
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          node-version: [14.x]
+      steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install yarn
+      - run: yarn install
+      - run: yarn build
+      - name: config git
+      run: git config --global user.email "1619686166.qq.com"&&git config --global user.name "Fullsize"
+      - name: check for changes
+      run: git status
+    - name: stage changed files
+      run: git add build/.
+    - name: commit changed files
+      run: git commit -m "update by github actions"
+    - name: push code to build
+      run: git push origin build
