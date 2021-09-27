@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Main Repo
         uses: actions/checkout@v2.3.4
@@ -27,4 +27,3 @@ jobs:
           git add build/*
           git commit -m 'update build'
           git push origin build
-          
