@@ -7,7 +7,7 @@
  */
 import React,{useContext} from "react";
 import { observer } from "mobx-react-lite";
-import RootContext from '../stores/root-contxt';
+import RootContext from '../stores/root_contxt';
 const MainContext: React.FC =observer ((props) => {
 	const {app}=useContext(RootContext)
 	return (

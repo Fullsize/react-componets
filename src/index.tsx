@@ -11,9 +11,9 @@ import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import './index.css';
 import App from './App';
-import RootStore from './stores';
+import RootStore from './stores/root';
 import reportWebVitals from './reportWebVitals';
-import RootContext from './stores/root-contxt'
+import RootContext from './stores/root_contxt'
 ReactDOM.render(
   <RootContext.Provider value={new RootStore()}>
     <React.StrictMode>
