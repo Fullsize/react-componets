@@ -16,9 +16,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "14"
-      - name: webfactory/ssh-agent
-        uses: webfactory/ssh-agent@v0.5.3
-
       - name: Build
         run: |
           npm install yarn 
