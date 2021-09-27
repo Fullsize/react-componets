@@ -21,6 +21,19 @@ jobs:
           npm install yarn 
           yarn install
           yarn build
+      - uses: actions/checkout@v1
+
+      - name: Setup SSH Keys and known_hosts
+        env:
+            SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+            ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+            ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
+
+      - name: Some task that fetches dependencies
+          env:
+              SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+          run: ./fetch-deps.sh
       - name: git push 
         run: |
           git config --global user.email "1619686166@qq.com"&&git config --global user.name "Fullsize"
