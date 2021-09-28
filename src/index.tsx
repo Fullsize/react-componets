@@ -2,7 +2,7 @@
  * @Author: Fullsize
  * @Date: 2021-09-15 17:19:25
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-26 16:27:09
+ * @LastEditTime: 2021-09-28 10:30:46
  * @FilePath: /react-context/src/index.tsx
  */
 import React from 'react';
@@ -13,14 +13,19 @@ import './index.css';
 import App from './App';
 import RootStore from './stores/root';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
 import RootContext from './stores/root_contxt'
 ReactDOM.render(
   <RootContext.Provider value={new RootStore()}>
+
     <React.StrictMode>
-      <Router history={createBrowserHistory()}>
-        <App />
-      </Router>
+      <BrowserRouter>
+        <Router history={createBrowserHistory()}>
+          <App />
+        </Router>
+      </BrowserRouter>
     </React.StrictMode>
+
   </RootContext.Provider>
   ,
   document.getElementById('root')
