@@ -33,7 +33,7 @@ jobs:
 
       - run: yarn install --frozen-lockfile
       - run: yarn build
-      - run: cp public/index.html build/404.html
+      - run: cp public/404.html build/404.html
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
