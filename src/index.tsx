@@ -2,7 +2,7 @@
  * @Author: Fullsize
  * @Date: 2021-09-15 17:19:25
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-29 15:14:11
+ * @LastEditTime: 2021-09-29 15:17:23
  * @FilePath: /react-context/src/index.tsx
  */
 import React from 'react';
@@ -13,17 +13,17 @@ import './index.css';
 import App from './App';
 import RootStore from './stores/root';
 import reportWebVitals from './reportWebVitals';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import RootContext from './stores/root_contxt'
 ReactDOM.render(
   <RootContext.Provider value={new RootStore()}>
 
     <React.StrictMode>
-      <HashRouter>
+      <BrowserRouter>
         <Router history={createBrowserHistory()}>
           <App />
         </Router>
-      </HashRouter>
+      </BrowserRouter>
     </React.StrictMode>
 
   </RootContext.Provider>
