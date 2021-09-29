@@ -2,11 +2,11 @@
  * @Author: Fullsize
  * @Date: 2021-09-16 11:04:20
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-24 17:43:40
+ * @LastEditTime: 2021-09-28 17:13:28
  * @FilePath: /react-context/src/containers/video-player/context/type.ts
  */
 import React from "react";
-import { PropsType } from '../type'
+import { PropsType } from '../type';
 // 本身状态
 export interface StateType {
 	width: string | number;
@@ -19,7 +19,13 @@ export interface StateType {
 	duration: number;
 	paused: boolean;
 	buffered: any;
-	isLoading:boolean;
+	isLoading: boolean;
+	rates: number[];
+	modal?: {
+		type: 'loading' | 'rate' | 'route',
+		enable: boolean
+	}
+	resolution:'HD'|'SD'|'FHD';
 }
 
 export type DispatchAction =

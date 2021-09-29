@@ -2,7 +2,7 @@
  * @Author: Fullsize
  * @Date: 2021-09-16 10:58:34
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-24 17:33:15
+ * @LastEditTime: 2021-09-28 17:55:08
  * @FilePath: /react-context/src/containers/video-player/index.tsx
  */
 import React from "react";
@@ -20,11 +20,17 @@ const VideoPlayer: React.FC<PropsType> = (props) => {
 					<Video />
 				</div>
 				<div className={styles['operation']}>
-					<div className={styles['functional']}>
-						<Loading />
+					<div className={styles['operation_content']}>
+						<div className={styles['gesture']}>
+
+						</div>
+						<div className={styles['functional']}>
+							<Loading />
+						</div>
 					</div>
 					<VideoControls />
 				</div>
+
 			</div>
 		</Child>
 	)

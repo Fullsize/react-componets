@@ -2,7 +2,7 @@
  * @Author: Fullsize
  * @Date: 2021-09-16 11:40:40
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-24 18:01:44
+ * @LastEditTime: 2021-09-28 15:17:47
  * @FilePath: /react-context/src/containers/video-player/components/video/index.tsx
  */
 import React, { useCallback, useContext, useMemo } from "react";
@@ -57,7 +57,8 @@ const Video: React.FC = () => {
 					onWaiting={onWaiting}
 				>
 					{states.sourceType === '' && (<source src={states.src} />)}
-					<HLSSource />
+					{states.sourceType === 'application/x-mpegURL'&&<HLSSource />}
+					
 				</video>
 			</>
 		)

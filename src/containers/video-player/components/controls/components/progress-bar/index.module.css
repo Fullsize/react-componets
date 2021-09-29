@@ -1,11 +1,10 @@
 .slider {
-  height: 6px;
+  height: 2px;
   width: 100%;
   cursor: pointer;
   position: relative;
-  background-color: #999;
+  background-color: rgba(255, 255, 255, 0.09);
   position: relative;
-  margin-bottom: 6px;
 }
 
 .slider_loading,
@@ -18,25 +17,25 @@
 }
 
 .slider_current {
-  background-color: #e6e6e6;
+  background-color: #0088f0;
   transition: background-color 0.3s;
   position: relative;
 }
 
 .slider_current::after {
   position: absolute;
-  width: 16px;
-  height: 16px;
-  right: -8px;
+  width: 12px;
+  height: 12px;
+  right: -12px;
   top: -5px;
-  position: absolute;
   content: "";
-  background-color: white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  background-color: #fff;
   border-radius: 50%;
 }
 
 .slider_loading {
-  background-color: #3333;
+  background-color: rgba(255, 255, 255, 0.3);
   transition: background-color 0.3s;
   overflow: hidden;
 }

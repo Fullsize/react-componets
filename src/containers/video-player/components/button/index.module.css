@@ -1,0 +1,9 @@
+.btn {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  margin-right: 16px;
+  color: #fff;
+}

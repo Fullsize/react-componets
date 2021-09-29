@@ -3,7 +3,7 @@
  * @Author: Fullsize
  * @Date: 2021-09-16 11:08:28
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-27 17:28:56
+ * @LastEditTime: 2021-09-28 17:13:54
  * @FilePath: /react-context/src/containers/video-player/context/user-context.ts
  */
 import { useCallback, useReducer, useRef } from "react";
@@ -19,15 +19,17 @@ const Reducer = (state: StateType, action: DispatchAction) => {
 const DEFAULT_STATE: StateType = {
 	width: '100%',
 	currentTime: 0,
-	src: 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8',
+	src: 'https://api.dogecloud.com/player/get.mp4?vcode=5ac682e6f8231991&userId=17&ext=.mp4',
 	autoplay: false,
-	sourceType: 'application/x-mpegURL',
+	sourceType: '',
 	initialized: true,
 	playbackRate: 1.0,
 	duration: 0,
 	paused: true,
 	buffered: null,
-	isLoading:false,
+	isLoading: false,
+	resolution: 'HD',
+	rates: [2.0, 1.5, 1.2, 1.0, 0.75]
 }
 export default function UserContext(props?: PropsType): Player {
 	const videoRef = useRef<HTMLVideoElement>(null);
@@ -70,7 +72,8 @@ export default function UserContext(props?: PropsType): Player {
 		const VOLUME = 0.5;
 		const video = videoRef && videoRef.current;
 		if (!video) return;
-		video.volume = video.volume ? MIN_VOLUME : VOLUME;
+		video.muted = !video.muted;
+		video.volume = !video.muted || video.volume ? MIN_VOLUME : VOLUME;
 	}, []);
 
 	// 切换倍速
@@ -80,6 +83,7 @@ export default function UserContext(props?: PropsType): Player {
 			return;
 		}
 		el.playbackRate = playbackRate;
+		dispatch({ type: 'custom', custom: { playbackRate } })
 	}, []);
 
 	const changeCurrentTime = useCallback((currentTime: number) => {

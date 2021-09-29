@@ -1,0 +1,10 @@
+.btn {
+  margin: 0;
+}
+
+.btn .icon {
+	display: block;
+  width: 22px;
+  margin: 0;
+  padding: 0;
+}
