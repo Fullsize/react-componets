@@ -28,9 +28,11 @@
 /* 功能区 */
 .functional {
   width: 100%;
-  flex: 1;
   position: absolute;
   z-index: 10;
+  height: 100%;
+  left: 0;
+  top: 0;
 }
 
 /* 手势 */

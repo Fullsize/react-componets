@@ -2,12 +2,13 @@
  * @Author: Fullsize
  * @Date: 2021-09-16 11:40:40
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-28 15:17:47
+ * @LastEditTime: 2021-09-29 16:40:14
  * @FilePath: /react-context/src/containers/video-player/components/video/index.tsx
  */
 import React, { useCallback, useContext, useMemo } from "react";
 import PlayerContext from "../../context/context-manager";
 import HLSSource from "../hls";
+import styles from './index.module.css';
 const Video: React.FC = () => {
 	const player = useContext(PlayerContext);
 	const { states, videoRef, dispatch, } = player
@@ -16,7 +17,7 @@ const Video: React.FC = () => {
 
 	}, [dispatch])
 	const onPlaying = useCallback((e) => {
-		dispatch({type:'custom',custom:{isLoading:false}})
+		dispatch({ type: 'custom', custom: { modal: { type: 'loading', enable: false } } })
 	}, [dispatch])
 	const onPlay = useCallback((e) => {
 		console.log('onPlay', e)
@@ -34,20 +35,21 @@ const Video: React.FC = () => {
 		console.log('onProgress', e.target.buffered)
 		dispatch({ type: 'custom', 'custom': { buffered: e.target.buffered } })
 	}, [dispatch])
-	const onWaiting=useCallback((e)=>{
+	const onWaiting = useCallback((e) => {
 		console.log('onWaiting')
-		dispatch({type:'custom',custom:{isLoading:true}})
-	},[dispatch])
+		dispatch({ type: 'custom', custom: { modal: { type: 'loading', enable: true } } })
+
+	}, [dispatch])
 	return useMemo(() => {
 		return (
-			<>
+			<div className={styles['video-container']}>
 				<video
+					className={styles['video-ref']}
 					ref={videoRef}
 					controls={false}
 					webkit-playsinline="true"
 					playsInline={true}
 					x5-video-player-type='h5'
-					style={{ 'width': states.width }}
 					onTimeUpdate={onTimeUpdate}
 					onPlay={onPlay}
 					onPause={onPause}
@@ -57,12 +59,11 @@ const Video: React.FC = () => {
 					onWaiting={onWaiting}
 				>
 					{states.sourceType === '' && (<source src={states.src} />)}
-					{states.sourceType === 'application/x-mpegURL'&&<HLSSource />}
-					
+					{states.sourceType === 'application/x-mpegURL' && <HLSSource />}
 				</video>
-			</>
+			</div>
 		)
-	}, [videoRef, states.width, states.sourceType, states.src, onTimeUpdate, onPlay, onPause, onPlaying, onProgress, onLoadedData, onWaiting])
+	}, [videoRef, states.sourceType, states.src, onTimeUpdate, onPlay, onPause, onPlaying, onProgress, onLoadedData, onWaiting])
 
 }
 export default Video;
