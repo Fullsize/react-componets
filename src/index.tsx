@@ -2,7 +2,7 @@
  * @Author: Fullsize
  * @Date: 2021-09-15 17:19:25
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-29 15:17:23
+ * @LastEditTime: 2021-09-29 15:19:55
  * @FilePath: /react-context/src/index.tsx
  */
 import React from 'react';
@@ -19,7 +19,7 @@ ReactDOM.render(
   <RootContext.Provider value={new RootStore()}>
 
     <React.StrictMode>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Router history={createBrowserHistory()}>
           <App />
         </Router>
