@@ -2,15 +2,14 @@
  * @Author: Fullsize
  * @Date: 2021-09-15 17:19:25
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-29 15:17:49
+ * @LastEditTime: 2021-09-29 15:43:29
  * @FilePath: /react-context/src/App.tsx
  */
 import React, { lazy, Suspense } from 'react';
 // import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-// import Home from './views'
 import routers from '../src/routes';
-// import PlayPage from './views/video'
+import NotFound from './404';
 import './App.css';
 
 function App() {
@@ -22,6 +21,7 @@ function App() {
             <Route key={item.path} exact path={item.path} component={lazy(() => import(`./views/${item.page}`))}>
             </Route>
           ))}
+          <Route component={NotFound} />
         </Switch>
       </Suspense>
     </div>
