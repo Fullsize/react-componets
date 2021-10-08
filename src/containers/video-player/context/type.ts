@@ -2,11 +2,19 @@
  * @Author: Fullsize
  * @Date: 2021-09-16 11:04:20
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-28 17:13:28
+ * @LastEditTime: 2021-10-08 16:11:28
  * @FilePath: /react-context/src/containers/video-player/context/type.ts
  */
+import { extend } from "lodash";
 import React from "react";
 import { PropsType } from '../type';
+type NotificationContent = string | JSX.Element;
+export interface Notification {
+	duration?: number;
+	timeStamp: string;
+	content: NotificationContent;
+}
+
 // 本身状态
 export interface StateType {
 	width: string | number;
@@ -25,7 +33,13 @@ export interface StateType {
 		type: 'loading' | 'rate' | 'route',
 		enable: boolean
 	}
-	resolution:'HD'|'SD'|'FHD';
+	networkError?: {
+		type: string;
+		data: string;
+		message: string;
+	}
+	notifications?: Notification[];
+	resolution: 'HD' | 'SD' | 'FHD';
 }
 
 export type DispatchAction =
@@ -44,15 +58,27 @@ export interface VideoControls {
 	toggleMute: () => void;
 	changeRate: (playbackRate: number) => void;
 	changeCurrentTime: (currentTime: number) => void;
+	sendNotification?: (content: NotificationContent, duration?: number) => void;
+	destroyNotification?: (timeStamp?: string) => void;
+
 }
 
+interface VideoRef extends HTMLVideoElement {
+	webkitEnterFullscreen?: () => void;
+}
+interface RefType extends HTMLDivElement {
+	webkitEnterFullscreen?: () => void;
+}
 // 播放器全部属性
 export interface Player {
 	states: StateType,
 	dispatch: React.Dispatch<DispatchAction>,
 	props?: PropsType,
 	videoRef: {
-		current: HTMLVideoElement | null
+		current: VideoRef | null
+	},
+	ref: {
+		current: RefType | null
 	},
 	controls: VideoControls
 }

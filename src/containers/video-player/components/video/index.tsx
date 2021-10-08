@@ -2,10 +2,10 @@
  * @Author: Fullsize
  * @Date: 2021-09-16 11:40:40
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-10-08 11:09:46
+ * @LastEditTime: 2021-10-08 16:07:43
  * @FilePath: /react-context/src/containers/video-player/components/video/index.tsx
  */
-import React, { useCallback, useContext, useMemo } from "react";
+import React, { useCallback, useContext, useMemo, useEffect } from "react";
 import PlayerContext from "../../context/context-manager";
 import HLSSource from "../hls";
 import styles from './index.module.css';
@@ -43,6 +43,16 @@ const Video: React.FC = () => {
 	const onRateChange = useCallback((e) => {
 		console.log('onRateChange', e.target.playbackRate)
 	}, [])
+	useEffect(() => {
+		window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function () {
+			if (window.orientation === 180 || window.orientation === 0) {
+				console.log('竖屏状态！');
+			}
+			if (window.orientation === 90 || window.orientation === -90) {
+				console.log('横屏状态！');
+			}
+		}, false);
+	}, [])
 	return useMemo(() => {
 		return (
 			<div className={styles['video-container']}>
@@ -67,7 +77,7 @@ const Video: React.FC = () => {
 				</video>
 			</div>
 		)
-	}, [videoRef, states.sourceType, states.src, onTimeUpdate, onPlay, onPause, onPlaying, onProgress, onLoadedData, onWaiting])
+	}, [videoRef, onTimeUpdate, onPlay, onPause, onPlaying, onProgress, onLoadedData, onWaiting, onRateChange, states.sourceType, states.src])
 
 }
 export default Video;

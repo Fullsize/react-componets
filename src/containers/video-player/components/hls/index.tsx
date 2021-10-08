@@ -3,7 +3,7 @@
  * @Author: Fullsize
  * @Date: 2021-09-16 11:42:30
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-16 15:21:09
+ * @LastEditTime: 2021-10-08 16:26:42
  * @FilePath: /react-context/src/containers/video-player/components/hls/index.tsx
  */
 import React, { useContext, useEffect, useMemo, useState, useCallback } from "react";
@@ -75,6 +75,7 @@ const HLSSource: React.FC = () => {
 	const {
 		videoRef,
 		states: { src, sourceType = 'application/x-mpegURL', initialized },
+		dispatch
 	} = player;
 	const playVideo = useCallback(() => {
 		const hls = new Hls();
@@ -91,7 +92,23 @@ const HLSSource: React.FC = () => {
 					return;
 				}
 				if (type === Hls.ErrorTypes.NETWORK_ERROR) {
-					console.log('网络错误');
+					if (
+						details === Hls.ErrorDetails.MANIFEST_LOAD_ERROR ||
+						details === Hls.ErrorDetails.MANIFEST_LOAD_TIMEOUT
+					) {
+						console.log('加载失败，试试切换线路')
+						// sendNotification('加载失败，试试切换线路', Infinity);
+						return;
+					}
+					dispatch({
+						type: 'custom', custom: {
+							networkError: {
+								type: 'NETWORK_ERROR',
+								message: '网络连接异常,请检查网络设置',
+								data: '网络连接异常,请检查网络设置'
+							}
+						}
+					})
 				} else if (type === Hls.ErrorTypes.MEDIA_ERROR) {
 					hls.recoverMediaError();
 				} else {
@@ -105,8 +122,8 @@ const HLSSource: React.FC = () => {
 				hls.loadSource(src);
 			});
 		}
-	}, [src, videoRef]);
-	useEffect(()=>{	playVideo()},[playVideo])
+	}, [dispatch, src, videoRef]);
+	useEffect(() => { playVideo() }, [playVideo])
 	return useMemo(() => {
 		return initialized ? <source src={src} type={sourceType} /> : null;
 	}, [initialized, sourceType, src])

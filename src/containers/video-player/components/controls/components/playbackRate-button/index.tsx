@@ -2,7 +2,7 @@
  * @Author: Fullsize
  * @Date: 2021-09-28 16:03:19
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-10-08 11:23:34
+ * @LastEditTime: 2021-10-08 14:23:38
  * @FilePath: /react-context/src/containers/video-player/components/controls/components/playbackRate-button/index.tsx
  */
 import React, { useContext, useMemo, useCallback } from "react";
@@ -24,6 +24,6 @@ const PlaybackRateButton: React.FC = () => {
 		<Button className={`${styles['btn']} ${modal?.type === 'rate' && modal.enable ? styles['btn--active'] : ''}`} onClick={handClick}>
 			{playbackRate}x
 		</Button>
-	), [handClick, playbackRate])
+	), [handClick, modal?.enable, modal?.type, playbackRate])
 }
 export default PlaybackRateButton;

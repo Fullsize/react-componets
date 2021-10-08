@@ -1,35 +1,20 @@
 /*
  * @Author: Fullsize
- * @Date: 2021-09-16 10:58:34
+ * @Date: 2021-09-27 17:04:44
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-29 16:21:03
+ * @LastEditTime: 2021-10-08 15:52:13
  * @FilePath: /react-context/src/containers/video-player/index.tsx
  */
 import React from "react";
+import PlayerContext from "./context/context-manager";
+import UserContext from './context/user-context';
+import VideoPlayer from "./player";
 import { PropsType } from './type';
-import Video from './components/video';
-import VideoControls from './components/controls'
-import Child from "./Child";
-import Domain from "./components/domain";
-import styles from './index.module.css';
-const VideoPlayer: React.FC<PropsType> = (props) => {
+const VideoPage: React.FC<PropsType> = (props) => {
 	return (
-		<Child {...props}>
-			<div className={styles['container']}>
-				<div className={styles['video-container']}>
-					<Video />
-				</div>
-				<div className={styles['operation']}>
-					<div className={styles['operation_content']}>
-						<div className={styles['gesture']}>
-						</div>
-						<Domain />
-					</div>
-					<VideoControls />
-				</div>
-
-			</div>
-		</Child>
+		<PlayerContext.Provider value={UserContext()}>
+			<VideoPlayer {...props} />
+		</PlayerContext.Provider>
 	)
 }
-export default VideoPlayer;
+export default VideoPage;

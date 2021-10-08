@@ -3,7 +3,7 @@
  * @Author: Fullsize
  * @Date: 2021-09-16 11:08:28
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-28 17:13:54
+ * @LastEditTime: 2021-10-08 16:31:54
  * @FilePath: /react-context/src/containers/video-player/context/user-context.ts
  */
 import { useCallback, useReducer, useRef } from "react";
@@ -33,6 +33,7 @@ const DEFAULT_STATE: StateType = {
 }
 export default function UserContext(props?: PropsType): Player {
 	const videoRef = useRef<HTMLVideoElement>(null);
+	const ref = useRef<HTMLDivElement>(null);
 	const [states, dispatch] = useReducer(Reducer, {
 		...DEFAULT_STATE,
 		src: props?.src || DEFAULT_STATE.src,
@@ -73,7 +74,7 @@ export default function UserContext(props?: PropsType): Player {
 		const video = videoRef && videoRef.current;
 		if (!video) return;
 		video.muted = !video.muted;
-		video.volume = !video.muted || video.volume ? MIN_VOLUME : VOLUME;
+		video.volume = video.volume ? MIN_VOLUME : VOLUME;
 	}, []);
 
 	// 切换倍速
@@ -109,6 +110,7 @@ export default function UserContext(props?: PropsType): Player {
 		dispatch,
 		props,
 		videoRef,
-		controls
+		controls,
+		ref
 	}
 }

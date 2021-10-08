@@ -2,7 +2,7 @@
  * @Author: Fullsize
  * @Date: 2021-10-08 10:13:10
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-10-08 11:07:18
+ * @LastEditTime: 2021-10-08 11:46:37
  * @FilePath: /react-context/src/containers/video-player/components/rate/index.tsx
  */
 import React, { useContext, useCallback } from "react";
@@ -11,22 +11,27 @@ import PlayContext from '../../context/context-manager';
 const RateList: React.FC = () => {
 	const player = useContext(PlayContext);
 	const { states: { playbackRate, rates, modal }, controls: { changeRate }, dispatch } = player;
-	const handClickRate = useCallback((item) => {
+	const handClickRate = useCallback((e, item) => {
 		if (playbackRate === item) {
 			return false;
 		}
+		e.preventDefault();
 		changeRate(item);
-		if (modal) {
-			dispatch({ type: 'custom', custom: { modal: { ...modal, enable: false } } });
-		}
-
-	}, [changeRate, dispatch, modal, playbackRate])
+		return false;
+	}, [changeRate, playbackRate])
+	const handClickParent = useCallback(() => {
+		modal && dispatch({
+			type: 'custom', custom: {
+				modal: { ...modal, enable: !modal.enable }
+			}
+		})
+	}, [dispatch, modal])
 	return (
-		<div className={styles['constainer']}>
+		<div className={styles['constainer']} onClick={handClickParent}>
 			{rates.map((item) => (
 				<div
 					className={`${styles['rate']} ${playbackRate === item ? styles['rate--active'] : ''}`}
-					onClick={() => handClickRate(item)}
+					onClick={(e) => handClickRate(e, item)}
 				>
 					{item}X
 				</div>
