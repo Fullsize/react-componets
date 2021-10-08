@@ -2,7 +2,7 @@
  * @Author: Fullsize
  * @Date: 2021-09-16 11:40:40
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-29 16:40:14
+ * @LastEditTime: 2021-10-08 11:09:46
  * @FilePath: /react-context/src/containers/video-player/components/video/index.tsx
  */
 import React, { useCallback, useContext, useMemo } from "react";
@@ -40,6 +40,9 @@ const Video: React.FC = () => {
 		dispatch({ type: 'custom', custom: { modal: { type: 'loading', enable: true } } })
 
 	}, [dispatch])
+	const onRateChange = useCallback((e) => {
+		console.log('onRateChange', e.target.playbackRate)
+	}, [])
 	return useMemo(() => {
 		return (
 			<div className={styles['video-container']}>
@@ -57,6 +60,7 @@ const Video: React.FC = () => {
 					onProgress={onProgress}
 					onLoadedData={onLoadedData}
 					onWaiting={onWaiting}
+					onRateChange={onRateChange}
 				>
 					{states.sourceType === '' && (<source src={states.src} />)}
 					{states.sourceType === 'application/x-mpegURL' && <HLSSource />}

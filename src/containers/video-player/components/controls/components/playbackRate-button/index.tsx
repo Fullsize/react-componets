@@ -2,7 +2,7 @@
  * @Author: Fullsize
  * @Date: 2021-09-28 16:03:19
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-28 16:35:08
+ * @LastEditTime: 2021-10-08 11:23:34
  * @FilePath: /react-context/src/containers/video-player/components/controls/components/playbackRate-button/index.tsx
  */
 import React, { useContext, useMemo, useCallback } from "react";
@@ -11,17 +11,17 @@ import Button from '../../../button';
 import styles from './index.module.css';
 const PlaybackRateButton: React.FC = () => {
 	const player = useContext(PlayerContext);
-	const { states: { playbackRate }, dispatch } = player;
+	const { states: { playbackRate, modal }, dispatch } = player;
 	const handClick = useCallback(() => {
 		dispatch({
 			type: 'custom',
 			custom: {
-				modal: { type: 'rate', enable: false }
+				modal: { type: 'rate', enable: !modal?.enable }
 			}
 		})
-	}, [dispatch])
+	}, [dispatch, modal?.enable])
 	return useMemo(() => (
-		<Button className={styles['btn']} onClick={handClick}>
+		<Button className={`${styles['btn']} ${modal?.type === 'rate' && modal.enable ? styles['btn--active'] : ''}`} onClick={handClick}>
 			{playbackRate}x
 		</Button>
 	), [handClick, playbackRate])

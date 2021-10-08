@@ -2,7 +2,7 @@
  * @Author: Fullsize
  * @Date: 2021-09-17 10:15:29
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-09-27 17:24:24
+ * @LastEditTime: 2021-10-08 11:27:20
  * @FilePath: /react-context/src/containers/video-player/components/controls/components/progress-bar/index.tsx
  */
 import React, { useCallback, useContext, useMemo, useState, useRef, useEffect } from "react";
@@ -67,7 +67,7 @@ const ProgressBar: React.FC = () => {
 		setValue(v)
 		changeCurrentTime(v)
 		setSliding(false);
-		console.log('click',v)
+		console.log('click', v)
 	}, [changeCurrentTime, duration])
 	const update = useCallback(() => {
 		if (!updateRef || !updateRef.current) {
@@ -111,37 +111,39 @@ const ProgressBar: React.FC = () => {
 			window.requestAnimationFrame(update);
 		}
 	}, [duration, pause, update])
-	useEffect(()=>{
+	useEffect(() => {
 		setSliding(false)
-	},[currentTime])
+	}, [currentTime])
 	const handTouchEnd = useCallback((e) => {
 		e.preventDefault();
 		update();
-		console.log('handTouchEnd',value,e)
+		console.log('handTouchEnd', value, e)
 		changeCurrentTime(value)
-	
+
 	}, [changeCurrentTime, update, value])
 
 	return useMemo(() => {
 		return (
-			<div className={styles['slider']} ref={slidRef} onClick={handClick}>
-				{/* 加载条 */}
-				<div
-					className={styles['slider_loading']}
-					style={{
-						'width': `${bufferedTranslateX}`
-					}}>
-				</div>
-				{/* 进度条 */}
-				<div
-					className={styles['slider_current']}
-					ref={slidTrackRef}
-					onTouchStart={handTouchStart}
-					onTouchMove={handTouchMove}
-					onTouchEnd={handTouchEnd}
-					style={{
-						'width': `${trackTranslateX}`
-					}}>
+			<div className={styles['constainer']}>
+				<div className={styles['slider']} ref={slidRef} onClick={handClick}>
+					{/* 加载条 */}
+					<div
+						className={styles['slider_loading']}
+						style={{
+							'width': `${bufferedTranslateX}`
+						}}>
+					</div>
+					{/* 进度条 */}
+					<div
+						className={styles['slider_current']}
+						ref={slidTrackRef}
+						onTouchStart={handTouchStart}
+						onTouchMove={handTouchMove}
+						onTouchEnd={handTouchEnd}
+						style={{
+							'width': `${trackTranslateX}`
+						}}>
+					</div>
 				</div>
 			</div>
 		)

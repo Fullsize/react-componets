@@ -9,15 +9,18 @@
   );
 }
 
+.container--modal {
+  background-color: rgba(0, 0, 0, 0.8);
+}
 .container-cotnrols {
   display: flex;
   padding: 10px 15px;
-	align-items: center;
-	justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.container-cotnrols .row{
-	display: flex;
-	align-items: center;
-	height: 100%;
+.container-cotnrols .row {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
