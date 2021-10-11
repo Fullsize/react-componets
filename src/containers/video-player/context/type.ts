@@ -2,7 +2,7 @@
  * @Author: Fullsize
  * @Date: 2021-09-16 11:04:20
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-10-08 16:11:28
+ * @LastEditTime: 2021-10-11 10:17:28
  * @FilePath: /react-context/src/containers/video-player/context/type.ts
  */
 import { extend } from "lodash";
@@ -29,6 +29,7 @@ export interface StateType {
 	buffered: any;
 	isLoading: boolean;
 	rates: number[];
+	isMotion:boolean;
 	modal?: {
 		type: 'loading' | 'rate' | 'route',
 		enable: boolean

@@ -2,7 +2,7 @@
  * @Author: Fullsize
  * @Date: 2021-10-08 10:13:10
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-10-08 11:46:37
+ * @LastEditTime: 2021-10-11 11:02:58
  * @FilePath: /react-context/src/containers/video-player/components/rate/index.tsx
  */
 import React, { useContext, useCallback } from "react";
@@ -32,6 +32,7 @@ const RateList: React.FC = () => {
 				<div
 					className={`${styles['rate']} ${playbackRate === item ? styles['rate--active'] : ''}`}
 					onClick={(e) => handClickRate(e, item)}
+					key={item}
 				>
 					{item}X
 				</div>

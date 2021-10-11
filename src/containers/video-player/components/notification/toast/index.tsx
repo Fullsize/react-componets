@@ -2,7 +2,7 @@
  * @Author: Fullsize
  * @Date: 2021-10-08 15:20:49
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-10-08 15:24:48
+ * @LastEditTime: 2021-10-11 11:32:27
  * @FilePath: /react-context/src/containers/video-player/components/notification/toast/index.tsx
  */
 import React from "react";
@@ -14,7 +14,7 @@ interface Props {
 const Toast: React.FC<Props> = () => {
 	return (
 		<div>
-
+				
 		</div>
 	)
 }

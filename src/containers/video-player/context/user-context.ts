@@ -3,7 +3,7 @@
  * @Author: Fullsize
  * @Date: 2021-09-16 11:08:28
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-10-08 16:31:54
+ * @LastEditTime: 2021-10-11 10:17:46
  * @FilePath: /react-context/src/containers/video-player/context/user-context.ts
  */
 import { useCallback, useReducer, useRef } from "react";
@@ -29,6 +29,7 @@ const DEFAULT_STATE: StateType = {
 	buffered: null,
 	isLoading: false,
 	resolution: 'HD',
+	isMotion: true,
 	rates: [2.0, 1.5, 1.2, 1.0, 0.75]
 }
 export default function UserContext(props?: PropsType): Player {

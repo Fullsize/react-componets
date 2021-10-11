@@ -2,10 +2,10 @@
  * @Author: Fullsize
  * @Date: 2021-09-17 10:12:01
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-10-08 11:19:00
+ * @LastEditTime: 2021-10-11 11:40:10
  * @FilePath: /react-context/src/containers/video-player/components/controls/index.tsx
  */
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PlayContext from '../../context/context-manager';
 import styles from './index.module.css';
 import ProgressBar from './components/progress-bar'
@@ -15,12 +15,17 @@ import Picture from './components/picture-button';
 import TimeBoard from "./components/time-board";
 import PlaybackRateButton from "./components/playbackRate-button";
 import Resolution from "./components/resolution-button";
-import PageFull from './components/full-screen'
-const VideoControls = () => {
+import PageFull from './components/full-screen';
+import _ from 'lodash'
+import classnames from 'classnames';
+const VideoControls: React.FC = () => {
 	const player = useContext(PlayContext);
-	const { states: { modal } } = player;
+	const { states: { modal, paused, isMotion } } = player;
 	return (
-		<div className={`${styles['container']} ${modal?.type !== 'loading' && modal?.enable ? styles['container--modal'] : ''}`}>
+		<div className={classnames(styles['container'], {
+			[`${styles['container--modal']}`]: modal?.type !== 'loading' && modal?.enable,
+			[`${styles['container--toggle']}`]: !isMotion && !paused
+		})}>
 			<ProgressBar />
 			<div className={styles['container-cotnrols']}>
 				<div className={styles['row']}>
