@@ -2,7 +2,7 @@
  * @Author: Fullsize
  * @Date: 2021-10-08 15:49:58
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-10-11 11:40:03
+ * @LastEditTime: 2021-10-11 11:58:49
  * @FilePath: /react-context/src/containers/video-player/player.tsx
  */
 import React, { useContext, useCallback, useEffect } from "react";
@@ -12,6 +12,7 @@ import Video from './components/video';
 import VideoControls from './components/controls'
 import Domain from "./components/domain";
 import ErrorPage from "./components/error";
+import Notification from './components/notification';
 import styles from './index.module.css';
 let timer: any = null;
 const VideoPlayer: React.FC<PropsType> = (props) => {
@@ -26,7 +27,6 @@ const VideoPlayer: React.FC<PropsType> = (props) => {
 		})
 	}, [dispatch])
 	useEffect(() => {
-		console.log(30,isMotion,!paused)
 		if (isMotion) {
 			clearTimeout(timer)
 			timer = setTimeout(() => {
@@ -35,7 +35,7 @@ const VideoPlayer: React.FC<PropsType> = (props) => {
 						isMotion: !!modal?.enable || false
 					}
 				})
-			}, 3000)
+			}, 5000)
 		}
 	}, [dispatch, modal?.enable, isMotion, paused])
 	return (
@@ -47,6 +47,7 @@ const VideoPlayer: React.FC<PropsType> = (props) => {
 				<div className={styles['operation_content']}>
 					<div className={styles['gesture']}>
 					</div>
+					<Notification />
 					<Domain />
 				</div>
 				<VideoControls />

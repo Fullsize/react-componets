@@ -2,13 +2,13 @@
  * @Author: Fullsize
  * @Date: 2021-09-16 11:04:20
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-10-11 10:17:28
+ * @LastEditTime: 2021-10-11 11:57:11
  * @FilePath: /react-context/src/containers/video-player/context/type.ts
  */
 import { extend } from "lodash";
 import React from "react";
 import { PropsType } from '../type';
-type NotificationContent = string | JSX.Element;
+export type NotificationContent = string | JSX.Element;
 export interface Notification {
 	duration?: number;
 	timeStamp: string;
@@ -39,7 +39,7 @@ export interface StateType {
 		data: string;
 		message: string;
 	}
-	notifications?: Notification[];
+	notifications: Notification[];
 	resolution: 'HD' | 'SD' | 'FHD';
 }
 

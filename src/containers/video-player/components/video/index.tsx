@@ -2,7 +2,7 @@
  * @Author: Fullsize
  * @Date: 2021-09-16 11:40:40
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-10-08 16:07:43
+ * @LastEditTime: 2021-10-11 12:01:05
  * @FilePath: /react-context/src/containers/video-player/components/video/index.tsx
  */
 import React, { useCallback, useContext, useMemo, useEffect } from "react";
@@ -11,7 +11,7 @@ import HLSSource from "../hls";
 import styles from './index.module.css';
 const Video: React.FC = () => {
 	const player = useContext(PlayerContext);
-	const { states, videoRef, dispatch, } = player
+	const { states, videoRef, dispatch, controls: { sendNotification } } = player
 	const onTimeUpdate = useCallback((e) => {
 		dispatch({ type: 'currentTime', currentTime: e.target.currentTime })
 
@@ -41,8 +41,9 @@ const Video: React.FC = () => {
 
 	}, [dispatch])
 	const onRateChange = useCallback((e) => {
+		sendNotification && sendNotification(`已为您切换至${e.target.playbackRate}`)
 		console.log('onRateChange', e.target.playbackRate)
-	}, [])
+	}, [sendNotification])
 	useEffect(() => {
 		window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function () {
 			if (window.orientation === 180 || window.orientation === 0) {

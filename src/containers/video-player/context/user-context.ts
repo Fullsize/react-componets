@@ -3,12 +3,12 @@
  * @Author: Fullsize
  * @Date: 2021-09-16 11:08:28
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-10-11 10:17:46
+ * @LastEditTime: 2021-10-11 14:28:02
  * @FilePath: /react-context/src/containers/video-player/context/user-context.ts
  */
 import { useCallback, useReducer, useRef } from "react";
 import _ from 'lodash';
-import { StateType, DispatchAction, Player, VideoControls } from './type';
+import { StateType, DispatchAction, Player, VideoControls, NotificationContent, Notification } from './type';
 import { SourceType } from './utils';
 import { PropsType } from '../type';
 const Reducer = (state: StateType, action: DispatchAction) => {
@@ -16,6 +16,7 @@ const Reducer = (state: StateType, action: DispatchAction) => {
 	const json = _.omit(_.cloneDeep(actions), ['type'])
 	return Object.assign({}, state, json)
 }
+const DEFAULT_NOTIFICATION_DURATION = 6000;
 const DEFAULT_STATE: StateType = {
 	width: '100%',
 	currentTime: 0,
@@ -30,6 +31,7 @@ const DEFAULT_STATE: StateType = {
 	isLoading: false,
 	resolution: 'HD',
 	isMotion: true,
+	notifications: [],
 	rates: [2.0, 1.5, 1.2, 1.0, 0.75]
 }
 export default function UserContext(props?: PropsType): Player {
@@ -99,12 +101,40 @@ export default function UserContext(props?: PropsType): Player {
 			el.play();
 		}
 	}, [])
+
+	const sendNotification = useCallback((content: NotificationContent, duration: number = DEFAULT_NOTIFICATION_DURATION) => {
+		const timeStamp = Date.now().toString();
+		dispatch({
+			type: 'custom', custom: {
+				notifications: [{
+					timeStamp,
+					content,
+					duration
+				}, ...states.notifications]
+			}
+		})
+	}, [])
+	const destroyNotification = useCallback((timeStamp?: string) => {
+		let _notifications: Notification[];
+		if (!timeStamp) {
+			_notifications = [];
+		} else {
+			_notifications = states.notifications.filter((item) => item.timeStamp !== timeStamp)
+		}
+		dispatch({
+			type: 'custom', custom: {
+				notifications: _notifications
+			}
+		})
+	}, []);
 	const controls: VideoControls = {
 		play,
 		pause,
 		toggleMute,
 		changeRate,
-		changeCurrentTime
+		changeCurrentTime,
+		sendNotification,
+		destroyNotification
 	}
 	return {
 		states,
