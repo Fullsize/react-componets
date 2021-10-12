@@ -5,7 +5,7 @@
  * @LastEditTime: 2021-10-11 11:40:10
  * @FilePath: /react-context/src/containers/video-player/components/controls/index.tsx
  */
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext} from "react";
 import PlayContext from '../../context/context-manager';
 import styles from './index.module.css';
 import ProgressBar from './components/progress-bar'
@@ -16,7 +16,6 @@ import TimeBoard from "./components/time-board";
 import PlaybackRateButton from "./components/playbackRate-button";
 import Resolution from "./components/resolution-button";
 import PageFull from './components/full-screen';
-import _ from 'lodash'
 import classnames from 'classnames';
 const VideoControls: React.FC = () => {
 	const player = useContext(PlayContext);

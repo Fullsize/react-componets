@@ -3,6 +3,8 @@
   background-color: black;
   position: relative;
   overflow: hidden;
+ -webkit-overflow-scrolling: touch;
+
 }
 
 .video-container {

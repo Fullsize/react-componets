@@ -10,11 +10,12 @@
   );
   visibility: visible;
   opacity: 1;
-  transition: bottom 1s;
+  transition: bottom 0.45s;
   bottom: 0;
 }
 
 .container--toggle{
+  transition: bottom 1s;
  bottom: -100%;
 }
 
