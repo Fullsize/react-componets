@@ -2,10 +2,10 @@
  * @Author: Fullsize
  * @Date: 2021-10-08 15:49:58
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-10-12 11:53:35
+ * @LastEditTime: 2021-10-13 14:48:50
  * @FilePath: /react-context/src/containers/video-player/player.tsx
  */
-import React, { useContext, useCallback, useEffect, useRef } from "react";
+import React, { useContext, useCallback, useEffect } from "react";
 
 import { PropsType } from './type';
 import PlayerContext from './context/context-manager'

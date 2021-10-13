@@ -8,10 +8,11 @@
 }
 
 .info {
-  /* position: absolute;
+  position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%); */
+  transform: translate(-50%,-50%);
+  z-index: 0;
   padding: 8px 12px;
   display: flex;
   flex-direction: column;
