@@ -1,4 +1,10 @@
 /*!
+  Copyright (c) 2018 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+
+/*!
 * screenfull
 * v5.1.0 - 2020-12-24
 * (c) Sindre Sorhus; MIT License
@@ -212,6 +218,12 @@
 
 /*! ./webvtt-parser */
 
+/*! Hammer.JS - v2.0.7 - 2016-04-22
+ * http://hammerjs.github.io/
+ *
+ * Copyright (c) 2016 Jorik Tangelder;
+ * Licensed under the MIT license */
+
 /*! eventemitter3 */
 
 /*! exports provided: AttrList */
@@ -274,7 +286,7 @@
 
 /*! exports provided: fetchSupported, default */
 
-/*! exports provided: findFirstFragWithCC, shouldAlignOnDiscontinuities, findDiscontinuousReferenceFrag, adjustSlidingStart, alignStream, alignPDT */
+/*! exports provided: findFirstFragWithCC, shouldAlignOnDiscontinuities, findDiscontinuousReferenceFrag, adjustSlidingStart, alignStream, alignPDT, alignFragmentByPDTDelta, alignMediaPlaylistByPDT */
 
 /*! exports provided: findFragmentByPDT, findFragmentByPTS, fragmentWithinToleranceTest, pdtWithinToleranceTest, findFragWithCC */
 
