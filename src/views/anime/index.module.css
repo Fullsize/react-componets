@@ -2,15 +2,34 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  min-height: 300px;
 }
 
-.btn{
-	
+.btns {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 30px;
 }
+
+.btn {
+  display: flex;
+  padding: 10px 15px;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  font-size: 18px;
+  transition: 0.45s;
+  color: white;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 1);
+  color: black;
+}
+
 .title {
   text-align: center;
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .video-constainer {

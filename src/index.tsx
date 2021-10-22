@@ -2,7 +2,7 @@
  * @Author: Fullsize
  * @Date: 2021-09-15 17:19:25
  * @LastEditors: Fullsize
- * @LastEditTime: 2021-10-08 14:23:24
+ * @LastEditTime: 2021-10-22 10:45:40
  * @FilePath: /react-context/src/index.tsx
  */
 import React from 'react';
@@ -17,6 +17,7 @@ import { BrowserRouter } from 'react-router-dom';
 import RootContext from './stores/root_contxt';
 import VConsole from 'vconsole';
  new VConsole();
+
 ReactDOM.render(
   <RootContext.Provider value={new RootStore()}>
 
